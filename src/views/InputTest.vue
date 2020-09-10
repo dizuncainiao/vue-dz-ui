@@ -16,7 +16,7 @@
     <div>PASSWORD : {{ password }}</div>
     <d-input
       placeholder="READONLY"
-      value="readonly"
+      v-model="readonly"
       :readonly="true"
     />
     <d-input
@@ -33,7 +33,8 @@ export default {
   data () {
     return {
       user: '',
-      password: ''
+      password: '',
+      readonly: 'readonly'
     }
   },
   methods: {

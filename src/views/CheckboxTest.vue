@@ -25,7 +25,9 @@ export default {
   },
   methods: {
     checkboxChange (e) {
-      console.log(`选中状态为：${e}`)
+      this.$message({
+        msg: `选中状态为：${e}`
+      })
     }
   }
 }
