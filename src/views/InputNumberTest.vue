@@ -4,6 +4,8 @@
       style="width: 290px;"
       placeholder="Default step"
       v-model="count"
+      :min="-2"
+      :max="2"
     />
     <div>count : {{ count }}</div>
     <d-input-number
