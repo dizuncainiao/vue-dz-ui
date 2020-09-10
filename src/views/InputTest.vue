@@ -37,6 +37,11 @@ export default {
       readonly: 'readonly'
     }
   },
+  mounted () {
+    setTimeout(() => {
+      this.user = 'zhangsan'
+    }, 300)
+  },
   methods: {
     focusHandler () {
       console.log('input 聚焦')

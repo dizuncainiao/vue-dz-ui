@@ -1,6 +1,6 @@
 <template>
-  <div class="d-input" :class="{active: active, filled: filled, 'check-failed': !checkedSuccess && this.active}">
-    <div class="d-input-placeholder">{{placeholder}}</div>
+  <div class="d-input" :class="{active: active, filled: filled}">
+    <div class="d-input-placeholder">{{ placeholder }}</div>
     <input
       ref="input"
       :value="value"
@@ -48,11 +48,14 @@ export default {
       filled: true
     }
   },
-  created () {
-    // 根据有无值判断input是否激活状态
-    this.active = !!this.value
-    // 校验默认传入的value
-    this.active && this.inputHandler(null, this.value)
+  watch: {
+    value: {
+      handler () {
+        // 根据有无值判断input是否激活状态
+        this.active = !!this.value
+      },
+      immediate: true
+    }
   },
   methods: {
     inputHandler ($event, value) {
