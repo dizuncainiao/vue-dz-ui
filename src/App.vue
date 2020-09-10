@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Demo</router-link>
+      <router-link to="/">Button</router-link> |
+      <router-link to="/inputTest">Input</router-link> |
+      <router-link to="/inputNumberTest">InputNumber</router-link> |
+      <router-link to="/checkboxTest">Checkbox</router-link> |
+      <router-link to="/radioTest">Radio</router-link> |
+      <router-link to="/selectTest">Select</router-link>
     </div>
     <router-view/>
   </div>
@@ -15,6 +20,7 @@
 }
 
 #nav {
+  text-align: center;
   padding: 30px;
 
   a {
