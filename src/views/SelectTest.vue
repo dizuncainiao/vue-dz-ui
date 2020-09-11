@@ -61,7 +61,7 @@ export default {
   mounted () {
     setTimeout(() => {
       this.selectValue2 = 'Select-4'
-    })
+    }, 300)
   },
   methods: {
     openChange (e) {
