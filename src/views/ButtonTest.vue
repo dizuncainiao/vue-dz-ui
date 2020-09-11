@@ -1,9 +1,9 @@
 <template>
   <d-section title="Button" class="button-wrapper">
-    <d-button @click="clickBtn" class="cta" title="CTA">CTA</d-button>
-    <d-button @click="clickBtn2" class="primary" title="Primary">PRIMARY</d-button>
-    <d-button @click="clickBtn2" class="secondary" title="Secondary">SECONDARY</d-button>
-    <d-button @click="clickBtn" class="inactive" title="Secondary">INACTIVE</d-button>
+    <d-button @click="clickHandler" class="cta" title="CTA">CTA</d-button>
+    <d-button @click="clickHandler2" class="primary" title="Primary">PRIMARY</d-button>
+    <d-button @click="clickHandler3" class="secondary" title="Secondary">SECONDARY</d-button>
+    <d-button @click="clickHandler" class="inactive" title="Secondary">INACTIVE</d-button>
   </d-section>
 </template>
 
@@ -11,13 +11,20 @@
 export default {
   name: 'ButtonTest',
   methods: {
-    clickBtn () {
+    clickHandler () {
       this.$message({
         msg: '你点击了按钮！',
         duration: 2000
       })
     },
-    clickBtn2 () {
+    clickHandler2 () {
+      this.$message({
+        type: 'warning',
+        msg: '你点击了按钮！',
+        duration: 2000
+      })
+    },
+    clickHandler3 () {
       this.$message({
         type: 'error',
         msg: '你点击了按钮！',
