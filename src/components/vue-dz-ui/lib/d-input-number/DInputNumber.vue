@@ -70,16 +70,15 @@ export default {
       disabledMinus: false
     }
   },
-  created () {
-    // 根据有无值判断input是否激活状态
-    this.setActive()
-    this.init()
-  },
   watch: {
-    value () {
-      // 根据有无值判断input是否激活状态
-      this.setActive()
-      this.init()
+    value: {
+      handler () {
+        // 根据有无值判断input是否激活状态
+        this.setActive()
+        this.init()
+      },
+      // 在初始化时立即侦听，否则需要在 created 中再调一遍上面的代码
+      immediate: true
     }
   },
   methods: {
@@ -157,13 +156,13 @@ export default {
         if (!isNumber(this.min) && !isNumber(this.max)) {
           this.currentVal = 0
         }
-        // 如果只有 min，取 min + 1
+        // 如果只有 min，取 0 （PS：从0开始加减，感觉体验更为自然一点）
         if (isNumber(this.min) && !isNumber(this.max)) {
-          this.currentVal = this.min + 1
+          this.currentVal = 0
         }
-        // 如果只有 max, 取 max - 1
+        // 如果只有 max, 0
         if (isNumber(this.max) && !isNumber(this.min)) {
-          this.currentVal = this.max - 1
+          this.currentVal = 0
         }
       }
     },

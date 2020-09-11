@@ -16,7 +16,7 @@ const components = [DButton, DCheckbox, DForm, DInput, DInputNumber, DRadio, DSe
 const install = function install (Vue) {
   components.forEach(component => Vue.component(component.name, component))
   Vue.prototype.$message = DMessage
-  Vue.prototype.$cconfirm = DConfirm
+  Vue.prototype.$confirm = DConfirm
 }
 
 /* if (typeof window !== 'undefined' && window.Vue) {

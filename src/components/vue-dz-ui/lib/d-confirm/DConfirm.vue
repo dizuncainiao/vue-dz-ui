@@ -10,7 +10,7 @@
             alt="">
         </div>
         <div class="d-confirm-box">
-          <div class="desc">{{ option.desc }}</div>
+          <div class="desc" v-html="option.desc"/>
           <div class="btn-box" :class="{center: option.title}">
             <div class="btn" @click="close">{{ option.btnText[0] }}</div>
             <div class="btn primary" @click="ok">{{ option.btnText[1] }}</div>
@@ -103,7 +103,6 @@ export default {
 
         .btn {
           width: 70px;
-          margin-left: 20px;
           text-align: center;
           line-height: 32px;
           font-size: 14px;
@@ -113,7 +112,12 @@ export default {
           border-radius: 3px;
           cursor: pointer;
 
+          &:last-child {
+            margin-left: 20px;
+          }
+
           &.primary {
+            background: #ee7800;
             color: #fff;
           }
         }
