@@ -13,7 +13,7 @@ export function isNumber (val) {
  * @returns {number}
  */
 export function getNumber (n) {
-  return typeof parseFloat(n) === 'number' && !!parseFloat(n) ? parseFloat(n) : 0
+  return typeof parseFloat(n) === 'number' && !!parseFloat(n) ? parseFloat(n) : n
 }
 
 /**

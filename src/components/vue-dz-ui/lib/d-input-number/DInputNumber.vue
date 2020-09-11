@@ -25,7 +25,8 @@ import { isNumber, getNumber, isEmptyStr } from '../utils/utils'
 export default {
   name: 'DInputNumber',
   props: {
-    value: Number,
+    // 允许字符串，是因为在输入负数的时候，输入 ‘-’ 其实是字符串类型的。输入不做数字校验和转换，只在失焦的时候做
+    value: [Number, String],
     placeholder: String,
     readonly: {
       type: Boolean,
@@ -40,7 +41,7 @@ export default {
       type: Number,
       default: 1
     },
-    // 最小值限制
+    // 最小值限制（ps：默认给个布尔类型，是为了设置默认值 false 用来判断的）
     min: {
       type: [Boolean, Number],
       default: false
@@ -63,7 +64,7 @@ export default {
       // 有值 & 失去焦点（placeholder保持上移, 边框变灰）
       filled: true,
       // 用来 避免直接更改 props(value) 的替身
-      currentVal: undefined,
+      currentVal: '',
       // 超出限制，禁止点击
       disabledPlus: false,
       disabledMinus: false
@@ -91,7 +92,7 @@ export default {
     },
     // 设置按钮的禁用状态
     setBtnDisabled (Val) {
-      if (typeof this.min !== 'number' && typeof this.max !== 'number') {
+      if (!isNumber(this.min) && !isNumber(this.max)) {
         return
       }
 
@@ -105,37 +106,66 @@ export default {
     },
     // 如果输入的值超出范围，则返回指定的最大或最小值
     getRangeVal (val) {
-      if (typeof this.min !== 'number' && typeof this.max !== 'number') {
+      if (!isNumber(this.min) && !isNumber(this.max)) {
         return val
       }
 
       const num = val
 
       // 分三种情况分别判断
-      if (typeof this.min === 'number' && typeof this.max === 'number') {
-        if (num <= this.min && num >= this.max) {
+      if (isNumber(this.min) && isNumber(this.max)) {
+        // 两者之间，返回原值
+        if (num >= this.min && num <= this.max) {
           return num
         } else if (num > this.max) {
+          // 大于 max，返回 max
           return this.max
         } else if (num < this.min) {
+          // 小于 min,返回 min
           return this.min
+        } else {
+          // 非数值
+          return (this.max + this.min) / 2
         }
       }
 
-      if (typeof this.min === 'number') {
+      if (isNumber(this.min) && !isNumber(this.max)) {
         return num >= this.min ? num : this.min
       }
 
-      if (typeof this.max === 'number') {
+      if (isNumber(this.max) && !isNumber(this.min)) {
         return num <= this.max ? num : this.max
       }
     },
+    // 设置激活状态，只要输入框中有值即可，不论是否是 数值
     setActive () {
-      this.active = isNumber(this.value) || isNumber(this.currentVal)
+      try {
+        this.active = this.value.toString().length || this.currentVal.toString().length
+      } catch (e) {
+        this.active = !1
+      }
     },
+    // 设置默认值。当前数字框处于未激活状态时，分以下4中情况取值
     setZero () {
       // 传入的 value 为 falsy 值时，转换成 0 避免出现 NaN 计算结果
-      !isNumber(this.currentVal) && (this.currentVal = getNumber(this.currentVal))
+      if (!isNumber(this.currentVal)) {
+        // 如果 min 和 max 都存在，取中间值
+        if (isNumber(this.min) && isNumber(this.max)) {
+          this.currentVal = (this.min + this.max) / 2
+        }
+        // 如果 min 和 max 都不存在，取 0
+        if (!isNumber(this.min) && !isNumber(this.max)) {
+          this.currentVal = 0
+        }
+        // 如果只有 min，取 min + 1
+        if (isNumber(this.min) && !isNumber(this.max)) {
+          this.currentVal = this.min + 1
+        }
+        // 如果只有 max, 取 max - 1
+        if (isNumber(this.max) && !isNumber(this.min)) {
+          this.currentVal = this.max - 1
+        }
+      }
     },
     plus () {
       if (this.disabledPlus) {
@@ -144,7 +174,7 @@ export default {
       this.setZero()
       this.currentVal = NP.plus(this.currentVal, this.step)
       this.setBtnDisabled(this.currentVal)
-      this.$emit('input', this.currentVal)
+      this.$emit('input', this.getRangeVal(this.currentVal))
       this.setActive()
     },
     minus () {
@@ -154,7 +184,7 @@ export default {
       this.setZero()
       this.currentVal = NP.minus(this.currentVal, this.step)
       this.setBtnDisabled(this.currentVal)
-      this.$emit('input', this.currentVal)
+      this.$emit('input', this.getRangeVal(this.currentVal))
       this.setActive()
     },
     focusHandler ($event) {
@@ -174,23 +204,27 @@ export default {
           this.filled = true
         }
       }, 300)
-
       this.$emit('blur', this.getRangeVal(getNumber(this.currentVal)))
       this.$emit('input', this.getRangeVal(getNumber(this.currentVal)))
     },
     inputHandler ($event) {
       // 输入框内容为‘空字符串’时，失焦后使 placeholder 复位
       if (isEmptyStr($event.target.value)) {
-        this.currentVal = undefined
-        this.$emit('input', undefined)
+        this.currentVal = ''
+        this.$emit('input', this.currentVal)
+        this.$refs.input.blur()
       } else {
-        // FIXME 不能输入 负号
-        this.currentVal = getNumber($event.target.value)
-        this.$emit('input', getNumber($event.target.value))
+        this.currentVal = $event.target.value
+        this.$emit('input', this.currentVal)
       }
     }
   }
 }
+
+/**
+ * 一、因为是数字输入框，可能会输入 ‘-’， ‘2.’，所以输入的时候不做非数字转换，否则会导致负数和小数点被干掉
+ * 二、一律在失焦的时候使用 parseFloat，将 ‘123abc’ => 123  不能转为数字的值 =>  ''
+ */
 </script>
 
 <style scoped lang="less">
