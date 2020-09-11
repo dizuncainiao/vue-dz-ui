@@ -4,10 +4,6 @@
       Checked it out
     </d-checkbox>
     <div>checked : {{ checked }}</div>
-    <d-checkbox v-model="checked2">
-      Checked it out
-    </d-checkbox>
-    <div>checked : {{ checked2 }}</div>
     <d-checkbox disabled>
       Disabled
     </d-checkbox>

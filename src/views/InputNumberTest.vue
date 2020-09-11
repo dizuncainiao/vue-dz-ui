@@ -32,7 +32,7 @@ export default {
   name: 'InputNumberTest',
   data () {
     return {
-      count: undefined,
+      count: 0,
       count2: undefined,
       count3: undefined
     }

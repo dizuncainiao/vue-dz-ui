@@ -1,23 +1,23 @@
 <template>
   <div>
     <d-section title="Select">
+      <div>selected : {{ selectValue }}</div>
       <d-select
         placeholder="Dropdown"
         v-model="selectValue"
         :options="options"
         @openChange="openChange"
       />
-      <div>selected : {{ checked4 }}</div>
     </d-section>
 
     <d-section title="Select">
+      <div>selected : {{ selectValue2 }}</div>
       <d-select
         placeholder="Dropdown"
         v-model="selectValue2"
         :options="options"
         @openChange="openChange"
       />
-      <div>selected : {{ checked5 }}</div>
     </d-section>
   </div>
 </template>
@@ -57,6 +57,11 @@ export default {
         }
       ]
     }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.selectValue2 = 'Select-4'
+    })
   },
   methods: {
     openChange (e) {

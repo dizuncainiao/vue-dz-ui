@@ -22,6 +22,8 @@ export default {
     event: 'change'
   },
   props: {
+    // 判断 v-model 上绑定的值 和 value 属性一致
+    // :checked="checked === $attrs.value"
     checked: String,
     disabled: {
       type: Boolean,
@@ -32,5 +34,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-  @import "./d-radio";
+@import "./d-radio";
 </style>

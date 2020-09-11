@@ -9,7 +9,7 @@
     <d-radio v-model="checked" value="Radio3" disabled>
       Radio3
     </d-radio>
-    <div>checked : {{ checked }}</div>
+    <div>选中的值为 : {{ checked }}</div>
   </d-section>
 </template>
 
