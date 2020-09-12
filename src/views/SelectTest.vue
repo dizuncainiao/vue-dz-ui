@@ -3,7 +3,7 @@
     <d-section title="Select">
       <div>selected : {{ selectValue }}</div>
       <d-select
-        placeholder="Dropdown"
+        placeholder="一个下拉框"
         v-model="selectValue"
         :options="options"
         @openChange="openChange"
@@ -27,7 +27,7 @@ export default {
   name: 'SelectTest',
   data () {
     return {
-      selectValue: 'Select-1',
+      selectValue: '',
       selectValue2: '',
       options: [
         {

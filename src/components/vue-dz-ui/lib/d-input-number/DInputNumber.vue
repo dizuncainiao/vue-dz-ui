@@ -51,7 +51,7 @@ export default {
       type: [Boolean, Number],
       default: false
     },
-    // 精度控制
+    // 精度控制 （暂时未加，用于失焦后小数点的位数控制）
     precision: {
       type: [Boolean, Number],
       default: false
