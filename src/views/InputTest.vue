@@ -48,7 +48,7 @@ export default {
         msg: 'input 聚焦'
       })
     },
-    pressEnter () {
+    pressEnter (e) {
       this.$message({
         msg: 'input上 按了 Enter 键'
       })

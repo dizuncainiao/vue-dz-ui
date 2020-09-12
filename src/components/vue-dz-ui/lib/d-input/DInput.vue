@@ -27,7 +27,10 @@ export default {
     // input 类型
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
+      validator: value => {
+        return ['text', 'password'].includes(value)
+      }
     },
     // 只读
     readonly: {
