@@ -3,7 +3,12 @@
     <d-button @click="clickHandler" class="cta" title="CTA">CTA</d-button>
     <d-button @click="clickHandler2" class="primary" title="Primary">PRIMARY</d-button>
     <d-button @click="clickHandler3" class="secondary" title="Secondary">SECONDARY</d-button>
-    <d-button @click="clickHandler" class="inactive" title="Secondary">INACTIVE</d-button>
+    <d-button @click="clickHandler" class="inactive" title="Secondary">
+      <template #icon>
+        <img src="@/assets/img/plus.svg" alt="">
+      </template>
+      INACTIVE
+    </d-button>
     <br>
     <d-button @click="confirm" class="cta" title="CTA">Confirm</d-button>
     <d-button @click="confirm2" class="cta" title="CTA">Confirm2 - 不传入title</d-button>

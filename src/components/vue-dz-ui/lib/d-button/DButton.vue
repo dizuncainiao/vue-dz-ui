@@ -6,7 +6,9 @@
     :disabled="disabled"
     :type="buttonType"
   >
-    <slot name="icon"/>
+    <span v-if="this.$scopedSlots.icon" class="icon">
+      <slot name="icon"/>
+    </span>
     <slot/>
   </button>
 </template>

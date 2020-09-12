@@ -44,13 +44,19 @@ export default {
   },
   methods: {
     focusHandler () {
-      console.log('input 聚焦')
+      this.$message({
+        msg: 'input 聚焦'
+      })
     },
     pressEnter () {
-      console.log('input 按了 Enter 键')
+      this.$message({
+        msg: 'input上 按了 Enter 键'
+      })
     },
     blurHandler () {
-      console.log('input 失焦')
+      this.$message({
+        msg: 'input 失焦'
+      })
     }
   }
 
