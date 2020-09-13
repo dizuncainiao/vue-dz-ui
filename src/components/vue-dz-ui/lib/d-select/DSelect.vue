@@ -37,7 +37,7 @@ export default {
   name: 'DSelect',
   props: {
     // 值
-    value: String,
+    value: [String, Number],
     // 占位符
     placeholder: String,
     // 下拉项数据

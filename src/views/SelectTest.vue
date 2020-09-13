@@ -17,6 +17,7 @@
         v-model="selectValue2"
         :options="options"
         @openChange="openChange"
+        @change="getObj"
       />
     </d-section>
   </div>
@@ -64,6 +65,9 @@ export default {
     }, 300)
   },
   methods: {
+    getObj (e) {
+      console.log(e)
+    },
     openChange (e) {
       console.log(e)
     }
