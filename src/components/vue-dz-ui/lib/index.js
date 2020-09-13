@@ -19,8 +19,4 @@ const install = function install (Vue) {
   Vue.prototype.$confirm = DConfirm
 }
 
-/* if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-} */
-
 export default install

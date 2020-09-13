@@ -1,8 +1,8 @@
 {
   "name": "vue-dz-ui",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "private": false,
-  "description": "Vue component, can be used in small projects.",
+  "description": "A lightweight vue component library.",
   "author": "dizuncainiao <wangbo_hello@163.com>",
   "blog": "https://blog.csdn.net/dizuncainiao",
   "keywords": [
