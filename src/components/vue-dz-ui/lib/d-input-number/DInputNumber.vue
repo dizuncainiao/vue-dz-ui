@@ -167,7 +167,7 @@ export default {
       }
     },
     plus () {
-      if (this.disabledPlus) {
+      if (this.disabledPlus || this.readonly || this.disabled) {
         return
       }
       this.setZero()
@@ -177,7 +177,7 @@ export default {
       this.setActive()
     },
     minus () {
-      if (this.disabledMinus) {
+      if (this.disabledPlus || this.readonly || this.disabled) {
         return
       }
       this.setZero()
@@ -222,7 +222,7 @@ export default {
 
 /**
  * 一、因为是数字输入框，可能会输入 ‘-’， ‘2.’，所以输入的时候不做非数字转换，否则会导致负数和小数点被干掉
- * 二、一律在失焦的时候使用 parseFloat，将 ‘123abc’ => 123  不能转为数字的值 =>  ''
+ * 二、一律在失焦的时候使用 parseFloat，将 ‘123abc’ => 123
  */
 </script>
 
