@@ -29,7 +29,7 @@ export default {
       option: {
         title: '',
         desc: '',
-        btnText: ['CLOSE', 'OK']
+        btnText: ['Cancel', 'Ok']
       },
       show: false
     }
