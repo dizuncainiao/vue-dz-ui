@@ -6,7 +6,9 @@
       <router-link to="/inputNumberTest">InputNumber</router-link> |
       <router-link to="/checkboxTest">Checkbox</router-link> |
       <router-link to="/radioTest">Radio</router-link> |
-      <router-link to="/selectTest">Select</router-link>
+      <router-link to="/selectTest">Select</router-link> |
+      <router-link to="/messageTest">Message</router-link> |
+      <router-link to="/confirmTest">Confirm</router-link>
     </div>
     <router-view/>
   </div>

@@ -33,6 +33,16 @@ const routes = [
     path: '/selectTest',
     name: 'SelectTest',
     component: () => import(/* webpackChunkName: "demo" */ '../views/SelectTest.vue')
+  },
+  {
+    path: '/messageTest',
+    name: 'MessageTest',
+    component: () => import(/* webpackChunkName: "demo" */ '../views/MessageTest.vue')
+  },
+  {
+    path: '/confirmTest',
+    name: 'ConfirmTest',
+    component: () => import(/* webpackChunkName: "demo" */ '../views/ConfirmTest.vue')
   }
 ]
 
