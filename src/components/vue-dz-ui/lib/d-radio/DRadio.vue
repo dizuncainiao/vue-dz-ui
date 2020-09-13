@@ -22,8 +22,8 @@ export default {
     event: 'change'
   },
   props: {
-    // 判断 v-model 上绑定的值 和 value 属性一致
-    // :checked="checked === $attrs.value"
+    // v-model 则天然具有 radio 框的 name 特性，相同类型的 radio 绑定 相同的值，即可分为同组的 radio 框。
+    // 判断 v-model 上绑定的值 和 $attrs.value 属性一致，则被选中
     checked: String,
     disabled: {
       type: Boolean,
