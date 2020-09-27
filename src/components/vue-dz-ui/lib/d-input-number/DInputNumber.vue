@@ -177,7 +177,7 @@ export default {
       this.setActive()
     },
     minus () {
-      if (this.disabledPlus || this.readonly || this.disabled) {
+      if (this.disabledMinus || this.readonly || this.disabled) {
         return
       }
       this.setZero()
